@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
+    android:background="@color/coloWhite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
@@ -39,15 +40,15 @@
         android:id="@+id/reset_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/reset_button_bg"
+        android:onClick="reset_game"
         android:text="X"
         android:textColor="@color/coloWhite"
-        app:layout_constraintBottom_toTopOf="@+id/lin_lay_main"
-        android:layout_marginBottom="50dp"
         android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/lin_lay_main"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="338dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <LinearLayout
