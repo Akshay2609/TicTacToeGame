@@ -70,16 +70,33 @@ public class MainActivity extends AppCompatActivity {
             for (int[] i : winningPositions) {
                 if (gameState[i[0]] == gameState[i[1]] && gameState[i[1]] == gameState[i[2]] && gameState[i[0]] != 2) {
 
-                    winner = "PLAYER 1 HAS WON!";
-                    if (gameState[i[0]] == 1) {
+                    if(gameState[i[0]] == 0){
+                        winner = "PLAYER 1 HAS WON!";
+                    }
+                    else if (gameState[i[0]] == 1) {
                         winner = "PLAYER 2 HAS WON!";
                     }
 
                     winnerMessage = findViewById(R.id.winnerMessage_textView);
                     winnerMessage.setText(winner);
                     reset_winnerMessage_layout = findViewById(R.id.reset_winnerMessage_layout);
-                    reset_winnerMessage_layout.setVisibility(View.VISIBLE);
+                    reset_winnerMessage_layout.animate().alpha(1f).scaleX(1.2f).setDuration(300);
 
+                }else{
+
+                    boolean gameIsOver = true;
+                    for(int gameDraw : gameState){
+
+                        if(gameDraw == 2)gameIsOver = false;
+                    }
+                    if(gameIsOver){
+
+                        winnerMessage = findViewById(R.id.winnerMessage_textView);
+                        winnerMessage.setTextSize(20);
+                        winnerMessage.setText("IT'S A DRAW");
+                        reset_winnerMessage_layout = findViewById(R.id.reset_winnerMessage_layout);
+                        reset_winnerMessage_layout.animate().alpha(1f).scaleX(1.2f).setDuration(300);
+                    }
                 }
 
             }
@@ -94,22 +111,7 @@ public class MainActivity extends AppCompatActivity {
 //                winnerMessage.setText("IT'S A DRAW");
 //                reset_winnerMessage_layout = findViewById(R.id.reset_winnerMessage_layout);
 //                reset_winnerMessage_layout.animate().alpha(1f).scaleX(1.2f).setDuration(500);
-            }else{
-
-            boolean gameIsOver = true;
-            for(int gameDraw : gameState){
-
-                if(gameDraw == 2)gameIsOver = false;
             }
-            if(gameIsOver){
-
-                winnerMessage = findViewById(R.id.winnerMessage_textView);
-                winnerMessage.setTextSize(20);
-                winnerMessage.setText("IT'S A DRAW");
-                reset_winnerMessage_layout = findViewById(R.id.reset_winnerMessage_layout);
-                reset_winnerMessage_layout.setVisibility(View.VISIBLE);
-            }
-        }
 }
     public void reset_game(View view){
 
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         set.play(animator1).before(animator2).with(animator3).before(animator4);
         set.start();
 
-        reset_winnerMessage_layout.setVisibility(View.INVISIBLE);
+        reset_winnerMessage_layout.setAlpha(0f);
         current_player = 0;
         no_winner_counter = 0;
 
