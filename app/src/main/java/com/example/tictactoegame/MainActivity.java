@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         set.start();
 
         int tag;
-        int test;
+
         tag = Integer.parseInt(any_button.getTag().toString());
 
         if(gameState[tag] == 2) {
